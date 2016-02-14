@@ -7,14 +7,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-//message object
-var message = {
-	timestamp: new Date(),
-	message: "Test message",
-	username: "William"
-}
-
-var messages = [message]; //make an array to hold messages
+var messages = []; //make an array to hold messages
 
 app.get('/messages', function(req, res) {  //req = request, res = response
 	res.json(messages);
@@ -29,7 +22,9 @@ app.post('/messages', function(req,res){
 	var newMessage = {
 		message:req.body.message,
 		username:req.body.username,
-		timestamp: new Date()
+		timestamp: new Date(),
+		lat:req.body.lat,
+		lon:req.body.lon
 	};
 
 	messages.push(newMessage);
